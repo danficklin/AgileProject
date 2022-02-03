@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using Models.Character;
 
 namespace Data.Entities
 {
@@ -18,7 +19,7 @@ namespace Data.Entities
         public string GroupName { get; set; }
 
         
-        public List<string> GroupMembers { get; set; }
+        public List<PlayerCharacterList> GroupMembers { get; set; }
 
     }
 }

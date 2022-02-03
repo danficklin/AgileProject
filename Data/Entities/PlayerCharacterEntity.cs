@@ -31,13 +31,26 @@ namespace Data.Entities
         public int Level { get; set; }
 
         [Required]
-        public Dictionary<string, int> Attributes { get; set; }
+        public int Strength { get; set; }
+        [Required]
+        public int Dexterity { get; set; }
+        [Required]
+        public int Constitution { get; set; }
+        [Required]
+        public int Intelligence { get; set; }
+        [Required]
+        public int Wisdom { get; set; }
+        [Required]
+        public int Charisma { get; set; }
+        [Required]
+        public int HitPoints { get; set; }
 
         [MaxLength(4000, ErrorMessage = "{0} Must be at most {1} characters long.")]
         public string Backstory { get; set; }
         
-        
-        public List<string> Feats { get; set; }
+        [ForeignKey(nameof(Feats))]
+        public int FeatId { get; set; }
+        public string Feats { get; set; }
         
         [ForeignKey(nameof(GroupName))]
         public int GroupId { get; set; }
