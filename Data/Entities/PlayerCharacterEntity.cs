@@ -47,10 +47,8 @@ namespace Data.Entities
 
         [MaxLength(4000, ErrorMessage = "{0} Must be at most {1} characters long.")]
         public string Backstory { get; set; }
-        
-        [ForeignKey(nameof(Feats))]
-        public int FeatId { get; set; }
-        public string Feats { get; set; }
+        [Required]
+        public List<FeatEntity> Feats { get; set; }
         
         [ForeignKey(nameof(GroupName))]
         public int GroupId { get; set; }
