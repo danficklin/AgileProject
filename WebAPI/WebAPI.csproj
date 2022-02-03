@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <UserSecretsId>146c012a-3547-4660-bb61-bdb255b00cff</UserSecretsId>
+    <UserSecretsId>9f3a7786-a20c-4b5d-8156-fa82873f5e25</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,6 +12,10 @@
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.13" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Data\Data.csproj" />
   </ItemGroup>
 
 </Project>
