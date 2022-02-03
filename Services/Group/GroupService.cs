@@ -9,10 +9,10 @@ using Models.Group;
 
 namespace Services.Group
 {
-    public class Group : IGroup
+    public class GroupService : IGroupService
     {
         private readonly ApplicationDbContext _context;
-        public Group(ApplicationDbContext context)
+        public GroupService(ApplicationDbContext context)
         {
             _context = context;
         }

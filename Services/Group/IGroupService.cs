@@ -6,7 +6,7 @@ using Models.Group;
 
 namespace Services.Group
 {
-    public interface IGroup
+    public interface IGroupService
     {
         Task<bool> CreateNewGroupAsync(GroupCreate group);
         Task<List<GroupListItem>> GetListOfGroupsAsync();
