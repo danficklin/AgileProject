@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Models.Group
 {
-    public class GroupCreate
+    public class GroupListItem
     {
         public int GroupId { get; set; }
         public string GroupName { get; set; }
