@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Models.Character
 {
-    public class CharacterDetail
+    public class PlayerCharacterDetail
     {
         public int Id { get; set; }
         public string Name { get; set; }

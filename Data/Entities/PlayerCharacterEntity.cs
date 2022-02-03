@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Data.Entities
 {
-    public class CharacterEntity
+    public class PlayerCharacterEntity
     {
         [Key]
         public int Id { get; set; }
@@ -32,10 +33,15 @@ namespace Data.Entities
         [Required]
         public Dictionary<string, int> Attributes { get; set; }
 
-        
+        [MaxLength(4000, ErrorMessage = "{0} Must be at most {1} characters long.")]
         public string Backstory { get; set; }
-        //public List<Feat> Feats { get; set; }
-        //public Group GroupMembership { get; set; }
+        
+        
+        public List<string> Feats { get; set; }
+        
+        [ForeignKey(nameof(GroupName))]
+        public int GroupId { get; set; }
+        public GroupEntity GroupName { get; set; }
 
     }
 }
