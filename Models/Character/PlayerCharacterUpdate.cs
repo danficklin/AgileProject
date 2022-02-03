@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Models.Character
 {
-    public class CharacterCreate
+    public class PlayerCharacterUpdate
     {
         [Required]
         public string Name { get; set; }
@@ -18,6 +18,7 @@ namespace Models.Character
         public int Level { get; set; }
         [Required]
         public Dictionary<string, int> Attributes { get; set; }
+        [Required]
         public string Backstory { get; set; }
         //public List<Feat> Feats { get; set; }
         //public Group GroupMembership { get; set; }

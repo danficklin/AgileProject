@@ -11,10 +11,9 @@ namespace Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {   
-        }
-
+   }
         public DbSet<GroupEntity> Groups { get; set; }
         public DbSet<FeatEntity> Feats { get; set; }
-        public DbSet<CharacterEntity> Characters { get; set; }
+        public DbSet<PlayerCharacterEntity> Characters { get; set; }
     }
 }
