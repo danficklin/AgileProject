@@ -7,7 +7,7 @@ namespace Models.Feat
 {
     public class FeatDetail
     {
-        public int FeatId { get; set; }
+        public int Id { get; set; }
         public string FeatName { get; set; }
         public string FeatType { get; set; }
         public string FeatShortDescription { get; set; }
