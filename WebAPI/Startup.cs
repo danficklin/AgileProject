@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Services.Character;
 
 namespace WebAPI
 {
@@ -33,6 +34,8 @@ namespace WebAPI
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
 
+            services.AddScoped<IPlayerCharacterService, PlayerCharacterService>();
+            
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

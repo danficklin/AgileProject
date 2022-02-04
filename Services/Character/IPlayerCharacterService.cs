@@ -10,7 +10,7 @@ namespace Services.Character
     {
         Task<bool> CreatePlayerCharacterAsync(PlayerCharacterCreate request);
         Task<IEnumerable<PlayerCharacterList>> GetAllCharactersAsync();
-        Task<PlayerCharacterDetail> GetNoteByIdAsync(int playerCharacterId);
+        Task<PlayerCharacterDetail> GetCharacterByIdAsync(int playerCharacterId);
         Task<bool> UpdateCharacterAsync(PlayerCharacterUpdate request);
         Task<bool> DeleteCharacterAsync(int playerCharacterId);
     }

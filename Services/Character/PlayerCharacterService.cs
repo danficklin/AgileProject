@@ -50,7 +50,7 @@ namespace Services.Character
                 .ToListAsync();
             return playerCharacter;
         }
-        public async Task<PlayerCharacterDetail> GetNoteByIdAsync(int playerCharacterId)
+        public async Task<PlayerCharacterDetail> GetCharacterByIdAsync(int playerCharacterId)
         {
             var playerCharacterEntity = await _dbContext.Characters
                 .FirstOrDefaultAsync(entity => 
@@ -84,8 +84,8 @@ namespace Services.Character
         }
         public async Task<bool> DeleteCharacterAsync(int playerCharacterId)
         {
-            var noteEntity = await _dbContext.Characters.FindAsync(playerCharacterId);
-            _dbContext.Characters.Remove(noteEntity);
+            var characterEntity = await _dbContext.Characters.FindAsync(playerCharacterId);
+            _dbContext.Characters.Remove(characterEntity);
             return await _dbContext.SaveChangesAsync() == 1;
         }
     }
