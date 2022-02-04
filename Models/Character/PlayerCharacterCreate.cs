@@ -32,6 +32,6 @@ namespace Models.Character
         public int HitPoints { get; set; }
         public string Backstory { get; set; }
         //public List<Feat> Feats { get; set; }
-        //public Group GroupMembership { get; set; }
+        // public Group GroupMembership { get; set; }
     }
 }
