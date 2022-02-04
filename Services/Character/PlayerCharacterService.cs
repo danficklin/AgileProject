@@ -12,7 +12,8 @@ namespace Services.Character
     public class PlayerCharacterService : IPlayerCharacterService
     {
         private readonly ApplicationDbContext _dbContext;
-        public PlayerCharacterService (ApplicationDbContext dbContext){
+        public PlayerCharacterService(ApplicationDbContext dbContext)
+        {
             _dbContext = dbContext;
         }
         public async Task<bool> CreatePlayerCharacterAsync(PlayerCharacterCreate request)
@@ -40,20 +41,20 @@ namespace Services.Character
         {
             var playerCharacter = await _dbContext.Characters
                 .Select(entity => new PlayerCharacterList
-                    {
-                        Id = entity.Id,
-                        Name = entity.Name,
-                        Class = entity.Class,
-                        Race = entity.Race,
-                        Level = entity.Level
-                    })
+                {
+                    Id = entity.Id,
+                    Name = entity.Name,
+                    Class = entity.Class,
+                    Race = entity.Race,
+                    Level = entity.Level
+                })
                 .ToListAsync();
             return playerCharacter;
         }
         public async Task<PlayerCharacterDetail> GetCharacterByIdAsync(int playerCharacterId)
         {
             var playerCharacterEntity = await _dbContext.Characters
-                .FirstOrDefaultAsync(entity => 
+                .FirstOrDefaultAsync(entity =>
                 entity.Id == playerCharacterId);
             return playerCharacterEntity is null ? null : new PlayerCharacterDetail
             {
@@ -82,6 +83,20 @@ namespace Services.Character
             var numberOfChanges = await _dbContext.SaveChangesAsync();
             return numberOfChanges == 1;
         }
+        public async Task<bool> AddCharacterToGroupAsync(int playerId, AddPlayerToGroup request)
+        {
+            var entity = await _dbContext.Characters.FindAsync(request.PlayerId);
+
+            if (request.PlayerId == playerId)
+            {
+                entity.GroupId = request.GroupId;
+                // entity.Group.GroupName = request.GroupMembership.GroupName;
+                var numberOfChanges = await _dbContext.SaveChangesAsync();
+                return numberOfChanges == 1;
+            }
+            return false;
+        }
+
         public async Task<bool> DeleteCharacterAsync(int playerCharacterId)
         {
             var characterEntity = await _dbContext.Characters.FindAsync(playerCharacterId);

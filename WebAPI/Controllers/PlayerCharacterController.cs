@@ -58,6 +58,20 @@ namespace WebAPI.Controllers
                 ? Ok("Player Character was updated successfully!")
                 : BadRequest("Player Character could not be updated.");
         }
+        
+        [HttpPut("{playerCharacterId:int}")]
+        public async Task<IActionResult> AddPlayerToGroupAsync([FromRoute] int playerCharacterId, [FromBody] AddPlayerToGroup request)
+        {
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            return await _playerCharacterService.AddCharacterToGroupAsync(playerCharacterId, request)
+                ? Ok("Player Character was added to the group successfully!")
+                : BadRequest("Player Character could not be added to group.");
+        }
+
+
         [HttpDelete("{playerCharacterId}")]
         public async Task<IActionResult> DeletePlayerCharacter([FromRoute] int playerCharacterId)
         {

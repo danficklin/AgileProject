@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Data;
 using Data.Entities;
 using Microsoft.EntityFrameworkCore;
+using Models.Character;
 using Models.Group;
 
 namespace Services.Group
@@ -45,13 +46,20 @@ namespace Services.Group
         public async Task<GroupDetail> GetGroupByIdAsync(int groupId)
         {
             var groupFind = await _context.Groups
+                .Include(pc => pc.GroupMembers)
                 .FirstOrDefaultAsync(gF => gF.GroupId == groupId);
             
             return groupFind is null ? null : new GroupDetail
             {
                 GroupId = groupFind.GroupId,
                 GroupName = groupFind.GroupName,
-                GroupMembers = groupFind.GroupMembers
+                GroupMembers = groupFind.GroupMembers.Select(gF => new PlayerCharacterList {
+                    Id = gF.Id,
+                    Name = gF.Name,
+                    Class = gF.Class,
+                    Level = gF.Level,
+                    Race = gF.Race
+                }).ToList()
             };
         }
 
@@ -60,7 +68,7 @@ namespace Services.Group
             var groupEntity = await _context.Groups.FindAsync(request.GroupId);
 
             groupEntity.GroupName = request.GroupName;
-            groupEntity.GroupMembers = request.GroupPlayerCharacters;
+            // groupEntity.GroupMembers = request.GroupPlayerCharacters;
 
             var numberOfChanges = await _context.SaveChangesAsync();
             return numberOfChanges == 1;

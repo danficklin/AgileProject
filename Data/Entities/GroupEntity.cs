@@ -19,7 +19,7 @@ namespace Data.Entities
         public string GroupName { get; set; }
 
         
-        public List<PlayerCharacterList> GroupMembers { get; set; }
+        public virtual List<PlayerCharacterEntity> GroupMembers { get; set; }
 
     }
 }
