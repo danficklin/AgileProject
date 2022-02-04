@@ -10,6 +10,7 @@ namespace Services.Group
     {
         Task<bool> CreateNewGroupAsync(GroupCreate group);
         Task<List<GroupListItem>> GetListOfGroupsAsync();
+        Task<GroupDetail> GetGroupByIdAsync(int groupId);
         Task<bool> UpdateGroupByIdAsync(GroupUpdate request);
         Task<bool> DeleteGroupByIdAsync(int groupId);
 

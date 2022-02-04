@@ -37,11 +37,38 @@ namespace WebAPI.Controllers
         {
             var groupList = await _groupservice.GetListOfGroupsAsync();
             return Ok(groupList);
-
         }
 
-        // [HttpPut]
+        [HttpGet("{groupId:int}")]
+        public async Task<IActionResult> GetGroupById([FromRoute] int groupId)
+        {
+            var groupFind = await _groupservice.GetGroupByIdAsync(groupId);
+            return groupFind is not null
+                ? Ok(groupFind)
+                : NotFound();
+        }
 
+        [HttpPut]
+        public async Task<IActionResult> UpdateGroups([FromBody] GroupUpdate request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            return await _groupservice.UpdateGroupByIdAsync(request)
+                ? Ok($"Group {request.GroupName} update successfully")
+                : BadRequest("Group could not be updated");
+            
+        }
+
+        [HttpDelete("{groupId:int}")]
+        public async Task<IActionResult> DeleteGroup([FromRoute] int groupId)
+        {
+            return await _groupservice.DeleteGroupByIdAsync(groupId)
+                ? Ok("Group deleted")
+                : BadRequest($"Group {groupId} could not be found.");
+        }
 
     }
 }

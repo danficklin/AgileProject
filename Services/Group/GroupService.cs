@@ -42,9 +42,22 @@ namespace Services.Group
             return groups;
         }
 
+        public async Task<GroupDetail> GetGroupByIdAsync(int groupId)
+        {
+            var groupFind = await _context.Groups
+                .FirstOrDefaultAsync(gF => gF.GroupId == groupId);
+            
+            return groupFind is null ? null : new GroupDetail
+            {
+                GroupId = groupFind.GroupId,
+                GroupName = groupFind.GroupName,
+                GroupMembers = groupFind.GroupMembers
+            };
+        }
+
         public async Task<bool> UpdateGroupByIdAsync(GroupUpdate request)
         {
-            var groupEntity = await _context.Groups.FindAsync();
+            var groupEntity = await _context.Groups.FindAsync(request.GroupId);
 
             groupEntity.GroupName = request.GroupName;
             groupEntity.GroupMembers = request.GroupPlayerCharacters;
