@@ -7,9 +7,9 @@ namespace Models.Feat
 {
     public class FeatListItem
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string ShortDescription { get; set; }
-        public bool CombatFeat { get; set; }
+        public int FeatId { get; set; }
+        public string FeatName { get; set; }
+        public string FeatShortDescription { get; set; }
+        public bool FeatCombatFeat { get; set; }
     }
 }
