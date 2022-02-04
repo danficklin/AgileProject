@@ -7,7 +7,6 @@ namespace Models.Group
 {
     public class GroupCreate
     {
-        public int GroupId { get; set; }
         public string GroupName { get; set; }
     }
 }

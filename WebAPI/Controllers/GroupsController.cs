@@ -32,5 +32,16 @@ namespace WebAPI.Controllers
             return BadRequest("Group could not be created");
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetAllGroups()
+        {
+            var groupList = await _groupservice.GetListOfGroupsAsync();
+            return Ok(groupList);
+
+        }
+
+        // [HttpPut]
+
+
     }
 }

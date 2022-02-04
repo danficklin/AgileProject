@@ -8,7 +8,6 @@ namespace Models.Group
 {
     public class GroupUpdate
     {
-        public int GroupId { get; set; }
         public string GroupName { get; set; }
         public List<PlayerCharacterList> GroupPlayerCharacters { get; set; }
     }

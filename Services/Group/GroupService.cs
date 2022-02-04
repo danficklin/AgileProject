@@ -16,6 +16,7 @@ namespace Services.Group
         {
             _context = context;
         }
+
         public async Task<bool> CreateNewGroupAsync(GroupCreate model)
         {
             var newGroup = new GroupEntity
@@ -43,7 +44,7 @@ namespace Services.Group
 
         public async Task<bool> UpdateGroupByIdAsync(GroupUpdate request)
         {
-            var groupEntity = await _context.Groups.FindAsync(request.GroupId);
+            var groupEntity = await _context.Groups.FindAsync();
 
             groupEntity.GroupName = request.GroupName;
             groupEntity.GroupMembers = request.GroupPlayerCharacters;
