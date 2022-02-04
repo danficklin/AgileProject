@@ -41,20 +41,55 @@ namespace Services.Feat
         {
             return await _ctx.Feats.FirstOrDefaultAsync(feat => feat.FeatName.ToLower() == name.ToLower());
         }
-        // public async Task<IActionResult> GetAllFeatsAsync()
-        // {
-        //     var feats = await _ctx.Feats.ToListAsync();
-        //     var featListItems = new List<FeatListItem>();
-        //     featListItems = feats.Select(f => new FeatListItem()
-        //     {
-        //         FeatId = f.FeatId,
-        //         FeatName = f.FeatName,
-        //         FeatShortDescription = f.FeatShortDescription,
-        //         FeatCombatFeat = f.FeatCombatFeat
-        //     }).ToList();
-        //     return Ok(featListItems);
-
-        // }
-
+        public async Task<IEnumerable<FeatListItem>> GetAllFeatsAsync()
+        {
+            var feat = await _ctx.Feats.Select(entity => new FeatListItem
+            {
+                FeatId = entity.FeatId,
+                FeatName = entity.FeatName,
+                FeatShortDescription = entity.FeatShortDescription,
+                FeatCombatFeat = entity.FeatCombatFeat
+            })
+            .ToListAsync();
+        return feat;
+        }
+        public async Task<FeatDetail> GetFeatByIdAsync(int featId)
+        {
+            var featEntity = await _ctx.Feats.FirstOrDefaultAsync(entity => entity.FeatId == featId);
+            return featEntity is null ? null : new FeatDetail
+            {
+                FeatName = featEntity.FeatName,
+                FeatType = featEntity.FeatType,
+                FeatShortDescription = featEntity.FeatShortDescription,
+                FeatPrerequisites = featEntity.FeatPrerequisites,
+                FeatBenefits = featEntity.FeatBenefits,
+                FeatNormal = featEntity.FeatNormal,
+                FeatSpecial = featEntity.FeatSpecial,
+                FeatDescription = featEntity.FeatDescription,
+                FeatCombatFeat = featEntity.FeatCombatFeat,
+                DateAdded = featEntity.DateAdded
+            };
+        }
+        public async Task<bool> UpdateFeatAsync(FeatEdit request)
+        {
+            var entity = await _ctx.Feats.FindAsync(request.Id);
+            entity.FeatName = request.FeatName;
+            entity.FeatType = request.FeatType;
+            entity.FeatShortDescription = request.FeatShortDescription;
+            entity.FeatPrerequisites = request.FeatPrerequisites;
+            entity.FeatBenefits = request.FeatBenefits;
+            entity.FeatNormal = request.FeatNormal;
+            entity.FeatSpecial = request.FeatSpecial;
+            entity.FeatDescription = request.FeatDescription;
+            entity.FeatCombatFeat = request.FeatCombatFeat;
+            var changes = await _ctx.SaveChangesAsync();
+            return changes == 1;
+    }
+    public async Task<bool> DeleteFeatAsync(int featId)
+    {
+        var featEntity = await _ctx.Feats.FindAsync(featId);
+        _ctx.Feats.Remove(featEntity);
+        return await _ctx.SaveChangesAsync() == 1;
+    }
     }
 }
