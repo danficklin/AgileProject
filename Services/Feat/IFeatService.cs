@@ -8,9 +8,10 @@ namespace Services.Feat
 {
     public interface IFeatService
     {
-        Task<bool> CreateFeatAsync(FeatCreate model);
-        // Task<IEnumerable<FeatListItem>> GetAllFeatsAsync();
-        
-        // Task<bool> UpdateFeatAsync(FeatUpdate request);
+        Task<bool> CreateFeatAsync(FeatCreate request);
+        Task<IEnumerable<FeatListItem>> GetAllFeatsAsync();
+        Task<FeatDetail> GetFeatByIdAsync(int featId);
+        Task<bool> UpdateFeatAsync(FeatEdit request);
+        Task<bool> DeleteFeatAsync(int featId);
     }
 }
