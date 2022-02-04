@@ -12,6 +12,7 @@ namespace Services.Character
         Task<IEnumerable<PlayerCharacterList>> GetAllCharactersAsync();
         Task<PlayerCharacterDetail> GetCharacterByIdAsync(int playerCharacterId);
         Task<bool> UpdateCharacterAsync(PlayerCharacterUpdate request);
+        Task<bool> AddCharacterToGroupAsync(int playerId, AddPlayerToGroup request);
         Task<bool> DeleteCharacterAsync(int playerCharacterId);
     }
 }

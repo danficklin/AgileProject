@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Models.Group;
 
 namespace Models.Character
 {
@@ -32,6 +33,6 @@ namespace Models.Character
         public int HitPoints { get; set; }
         public string Backstory { get; set; }
         //public List<Feat> Feats { get; set; }
-        // public Group GroupMembership { get; set; }
+        public GroupListItem GroupMembership { get; set; }
     }
 }

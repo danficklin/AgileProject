@@ -50,9 +50,9 @@ namespace Data.Entities
         [Required]
         public List<FeatEntity> Feats { get; set; }
         
-        [ForeignKey(nameof(GroupName))]
+        [ForeignKey(nameof(Group))]
         public int? GroupId { get; set; }
-        public virtual GroupEntity GroupName { get; set; }
+        public virtual GroupEntity Group { get; set; }
 
     }
 }
